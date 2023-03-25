@@ -16,12 +16,9 @@ app.use('/swagger', swaggerUI.serve, swaggerUI.setup(swaggerDocs));
 app.use('',apiRoutes);
 rutas(app);
 
-
-
 const mongoose = require('mongoose');
 const username = 'usuario_tarea5';      /// actualizar username
 const password = 'usuario_tarea5';      /// actualizar password
-
 
 const mongoUrl = 'mongodb+srv://'+username+':'+password+'@clusterescritorio.rn2dgpb.mongodb.net/?retryWrites=true&w=majority'
 
