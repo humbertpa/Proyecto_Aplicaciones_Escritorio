@@ -1,0 +1,57 @@
+$fondo-header: rgb(43, 43, 43);
+$texto-header:white;
+
+$boton-hover : rgb(81, 81, 81);
+$boton-activo: #1891d2;
+
+div {
+
+
+    height: 10%;
+    padding: 0%;
+    margin: 0%;
+
+    background-color: $fondo-header;
+    color: $texto-header;
+
+    display: flex;
+    flex-direction: row;
+}
+
+h1 {
+
+    margin-left: 20px;
+    font-family: Arial,
+        sans-serif;
+    text-align: left;
+    flex-grow: 1;
+}
+
+a {
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+
+    float: right;
+
+    width: 120px;
+    height: 100%;
+
+    text-decoration: none;
+    font-family: Arial,
+        sans-serif;
+    font-size: 20px;
+    color: $texto-header;
+    
+    &:hover {
+        background-color: $boton-hover;
+        color: white;
+    }
+
+    &:active {
+        background-color: $boton-activo;
+        color: black;
+    }
+}
