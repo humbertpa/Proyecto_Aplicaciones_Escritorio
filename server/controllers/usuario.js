@@ -1,6 +1,11 @@
 const Usuario = require('../models/usuario');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
+require('dotenv').config();
+
+const {OAuth2Client} = require('google-auth-library');
+const googleId = process.env.GOOGLE_CLIENT;
+const googleClient = new OAuth2Client(googleId);
 
 class ControladorUsuario {
 
@@ -20,6 +25,10 @@ class ControladorUsuario {
             .then(usuarioGuardado => {
                 console.log("Usuario creado correctamente");
                 res.status(200).send('Usuario creado correctamente');
+
+                const token = jwt.sign({ id: usuarioGuardado._id }, 'secret_key', { expiresIn: '1h' });
+                res.json({ token });
+
             }).catch(error => {
                 console.error(error);
                 res.status(500).send('Error interno del servidor');
@@ -27,8 +36,6 @@ class ControladorUsuario {
 
         console.log("terminó funcion registrar usuario en controlador usuario")
 
-        const token = jwt.sign({ email: req.body.email }, 'secret_key', { expiresIn: '1h' });
-        res.json({ token });
     }
 
     static async login(req, res) {
@@ -51,7 +58,8 @@ class ControladorUsuario {
 
             console.log("todo salio bien");
             console.log(user);
-            const token = jwt.sign({ email: req.body.email }, 'secret_key', { expiresIn: '1h' });
+            
+            const token = jwt.sign({ id: usuarioGuardado._id }, 'secret_key', { expiresIn: '1h' });
             res.json({ token });
 
         } catch (error) {
@@ -59,6 +67,21 @@ class ControladorUsuario {
             res.status(500).send('Error interno del servidor');
             return null;
         }
+    }
+
+    static googleLogin(req,res){
+        const idToken = req.body.idToken;
+
+        googleClient.verifyIdToken({idToken}).then(response=>{
+            const data = response.getPayload();
+            console.log(data);
+            res.send({token:132456})
+        }).catch(err=>{
+            console.log(err);
+            res.status(401).send({msg: 'Token Invalido'});
+        }
+
+        )
     }
 }
 

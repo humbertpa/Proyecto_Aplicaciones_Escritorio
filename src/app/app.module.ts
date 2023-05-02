@@ -21,6 +21,10 @@ import { TablaClientesComponent } from './pages/clientes/tabla-clientes/tabla-cl
 import { UsuarioComponent } from './pages/usuario/usuario.component';
 import { CuentaComponent } from './pages/usuario/cuenta/cuenta.component';
 
+
+import { SocialLoginModule, SocialAuthServiceConfig, GoogleSigninButtonModule } from '@abacritt/angularx-social-login';
+import {GoogleLoginProvider} from '@abacritt/angularx-social-login';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -38,14 +42,35 @@ import { CuentaComponent } from './pages/usuario/cuenta/cuenta.component';
     TablaClientesComponent,
     UsuarioComponent,
     CuentaComponent
+
+
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    GoogleSigninButtonModule,
+    SocialLoginModule
   ],
-  providers: [],
+  providers: [{
+    provide: 'SocialAuthServiceConfig',
+    useValue: {
+      autoLogin: false,
+      providers: [
+        {
+          id: GoogleLoginProvider.PROVIDER_ID,
+          provider: new GoogleLoginProvider(
+            '264879683267-spjp2jpn7vqorbodu9n6s7mjgf24rn7l.apps.googleusercontent.com'
+          )
+        },
+
+      ],
+      onError: (err) => {
+        console.error(err);
+      }
+    } as SocialAuthServiceConfig,
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

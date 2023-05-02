@@ -7,7 +7,7 @@ async function auth(req, res, next) {
     if (!token) return res.status(401).send('Acceso denegado. Token no provisto');
   
     try {
-      const decoded = jwt.verify(token, 'jwtPrivateKey');
+      const decoded = jwt.verify(token, 'secret_key');
       const user = await Usuario.findById(decoded._id);
       if (!user) return res.status(404).send('Usuario no encontrado');
   
