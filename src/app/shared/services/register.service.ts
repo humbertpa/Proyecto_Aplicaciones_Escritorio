@@ -5,7 +5,6 @@ import { environment } from 'src/environments/environment.development';
 import { NewUser } from '../interfaces/new-user';
 import { Token } from '../interfaces/token';
 
-
 @Injectable({
   providedIn: 'root'
 })

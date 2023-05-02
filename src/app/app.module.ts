@@ -19,6 +19,7 @@ import { PerfilCuentaComponent } from './pages/perfil-cuenta/perfil-cuenta.compo
 import { NuevoClienteComponent } from './pages/clientes/nuevo-cliente/nuevo-cliente.component';
 import { TablaClientesComponent } from './pages/clientes/tabla-clientes/tabla-clientes.component';
 import { UsuarioComponent } from './pages/usuario/usuario.component';
+import { CuentaComponent } from './pages/usuario/cuenta/cuenta.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { UsuarioComponent } from './pages/usuario/usuario.component';
     PerfilCuentaComponent,
     NuevoClienteComponent,
     TablaClientesComponent,
-    UsuarioComponent
+    UsuarioComponent,
+    CuentaComponent
   ],
   imports: [
     BrowserModule,

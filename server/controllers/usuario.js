@@ -26,28 +26,39 @@ class ControladorUsuario {
             });
 
         console.log("terminó funcion registrar usuario en controlador usuario")
-        
+
         const token = jwt.sign({ email: req.body.email }, 'secret_key', { expiresIn: '1h' });
         res.json({ token });
-
-
     }
 
+    static async login(req, res) {
+        console.log("================================== Entro a login en controller de usuario");
 
+        const { email, password } = req.body;
+        try {
+            const user = await Usuario.findOne({ correo: email });
+            if (!user) {
+                console.log("usuario no encontrado");
+                return res.status(400).send('Usuario o contraseña inválido');
+            }
 
-    static login(req, res) {
-        const { correo, password } = req.body;
-        const user = Usuario.findOne({ correo });
-        if (!user) {
-            return res.status(400).send('Usuario o contraseña inválido');
+            const passwordValido = bcrypt.compare(password, user.password);
+
+            if (!passwordValido) {
+                console.log("password invalido");
+                return res.status(400).send('Usuario o contraseña inválido');
+            }
+
+            console.log("todo salio bien");
+            console.log(user);
+            const token = jwt.sign({ email: req.body.email }, 'secret_key', { expiresIn: '1h' });
+            res.json({ token });
+
+        } catch (error) {
+            console.error(error);
+            res.status(500).send('Error interno del servidor');
+            return null;
         }
-        const passwordValido = bcrypt.compare(password, user.password);
-        if (!passwordValido) {
-            return res.status(400).send('Usuario o contraseña inválido');
-        }
-
-        const token = jwt.sign({ _id: user._id }, 'jwtPrivateKey');
-        res.header('Authorization', token).send('Login exitoso :)');
     }
 }
 

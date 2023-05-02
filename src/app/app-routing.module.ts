@@ -11,6 +11,7 @@ import { ClientesComponent } from './pages/clientes/clientes.component';
 import { NuevoClienteComponent } from './pages/clientes/nuevo-cliente/nuevo-cliente.component';
 import { TablaClientesComponent } from './pages/clientes/tabla-clientes/tabla-clientes.component';
 import { UsuarioComponent } from './pages/usuario/usuario.component';
+import { CuentaComponent } from './pages/usuario/cuenta/cuenta.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'index', pathMatch: 'full' },
@@ -19,7 +20,8 @@ const routes: Routes = [
     path: 'usuario', component: UsuarioComponent, children: [
       { path: '', component: PerfilCuentaComponent },
       { path: 'login', component: LoginComponent },
-      { path: 'register', component: RegisterComponent }
+      { path: 'register', component: RegisterComponent },
+      { path: 'cuenta', component: CuentaComponent }
     ]
   },
   { path: 'perfilCuenta', component: PerfilCuentaComponent },

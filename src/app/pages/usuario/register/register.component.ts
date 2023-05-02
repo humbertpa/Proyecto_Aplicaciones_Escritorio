@@ -43,9 +43,6 @@ export class RegisterComponent {
         console.log("Impresion de token");
         this.authService.getToken();
         console.log("Se termino el proceso de registro de usuario")
-
-
-
         this.router.navigate(['/']);
 
       });
