@@ -13,6 +13,8 @@ export class PerfilClienteComponent {
 
   clienteNombre: string = '';
   clienteId: string = '';
+  clienteImage : string = '';
+
   cliente: Cliente = {
     nombre: '',
     correo: '',
@@ -89,11 +91,20 @@ export class PerfilClienteComponent {
 
   }
 
-
-
-
   cancelar() {
     this.toggleEdit();
   }
 
+  cambiarImagen(event: any) {
+    const file: File = event.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = (e: any) => {
+        const imageData: string = e.target.result;
+        // Aquí puedes realizar las operaciones deseadas con la imagen
+        // como mostrarla en una vista previa o enviarla al servidor
+      };
+      reader.readAsDataURL(file);
+    }
+  }
 }

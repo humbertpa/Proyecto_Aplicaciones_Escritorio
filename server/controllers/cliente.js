@@ -76,7 +76,7 @@ class ControladorCliente {
         console.log(req.body);
         console.log(req.params);
 
-         Cliente.updateOne({ _id: new ObjectId(req.params.id), correo_usuario: req.user.correo }, { $set: req.body })
+        Cliente.updateOne({ _id: new ObjectId(req.params.id), correo_usuario: req.user.correo }, { $set: req.body })
             .then(resultado => {
                 console.log('Registro Editado Exitosamente');
                 console.log(resultado);
@@ -85,7 +85,7 @@ class ControladorCliente {
             .catch(error => {
                 console.error(error);
                 res.status(500).send('Error al editar Registro');
-            }); 
+            });
     }
 }
 

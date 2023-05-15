@@ -7,6 +7,7 @@ const clientSchema = new Schema({
     organizacion: { type: String, required: true },
     proyecto: { type: String, required: true },
     correo_usuario: { type: String, required: true },
+    imagen: { type: String }
   });
 
 module.exports = model('Cliente', clientSchema);
