@@ -4,6 +4,7 @@ const auth = require('./../middlewares/auth');
 
 router.post('/agregar', auth, ControladorCliente.agregar);
 router.post('/editar/:id', auth, ControladorCliente.editar);
+router.post('/imagen/:id', auth, ControladorCliente.cambiarImagen);
 router.get('/listar', auth, ControladorCliente.listar);
 router.get('/mostrar/:nombre', auth, ControladorCliente.mostrar);
 

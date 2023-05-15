@@ -13,7 +13,7 @@ export class PerfilClienteComponent {
 
   clienteNombre: string = '';
   clienteId: string = '';
-  clienteImage : string = '';
+  clienteImage: string = '';
 
   cliente: Cliente = {
     nombre: '',
@@ -25,7 +25,7 @@ export class PerfilClienteComponent {
 
   constructor(
     private route: ActivatedRoute,
-    private router : Router,
+    private router: Router,
     private clienteService: ClienteService,) { }
 
   ngOnInit(): void {
@@ -42,6 +42,20 @@ export class PerfilClienteComponent {
         this.cliente.contacto = datos.contacto;
         this.cliente.organizacion = datos.organizacion;
         this.cliente.proyecto = datos.proyecto;
+        console.log(datos.imagen);
+        const imgPreview =  (document.getElementById('image-preview') as HTMLInputElement);
+        if(datos.imagen){
+          imgPreview.setAttribute('src', datos.imagen);
+        }else{
+          imgPreview.setAttribute('src', 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png');
+        }
+
+
+        
+
+
+
+
         console.log(this.cliente);
         console.log(this.clienteId);
       }, (error) => {
@@ -68,11 +82,11 @@ export class PerfilClienteComponent {
 
   guardar() {
 
-    const clienteModificado : Cliente = {
-      nombre : this.cliente.nombre = (document.getElementById('nombre') as HTMLInputElement).value,
-      correo : this.cliente.correo = (document.getElementById('correo') as HTMLInputElement).value,
-      contacto : this.cliente.contacto = (document.getElementById('contacto') as HTMLInputElement).value,
-      organizacion : this.cliente.organizacion = (document.getElementById('organizacion') as HTMLInputElement).value,
+    const clienteModificado: Cliente = {
+      nombre: this.cliente.nombre = (document.getElementById('nombre') as HTMLInputElement).value,
+      correo: this.cliente.correo = (document.getElementById('correo') as HTMLInputElement).value,
+      contacto: this.cliente.contacto = (document.getElementById('contacto') as HTMLInputElement).value,
+      organizacion: this.cliente.organizacion = (document.getElementById('organizacion') as HTMLInputElement).value,
       proyecto: this.cliente.proyecto = (document.getElementById('proyecto') as HTMLInputElement).value,
     }
 
@@ -96,13 +110,29 @@ export class PerfilClienteComponent {
   }
 
   cambiarImagen(event: any) {
+    console.log('============Se entro a cambiar imagen =========================================')
     const file: File = event.target.files[0];
     if (file) {
       const reader = new FileReader();
       reader.onload = (e: any) => {
         const imageData: string = e.target.result;
-        // Aquí puedes realizar las operaciones deseadas con la imagen
-        // como mostrarla en una vista previa o enviarla al servidor
+        console.log(imageData);
+
+        this.clienteService.cambiarImagen(imageData, this.clienteId).subscribe(
+          (response: any) => {
+            console.log("De regreso desde cambiarimagen a perfil-cliente.component.ts");
+            this.router.navigateByUrl(`/clientes`);
+          }, (error) => {
+            console.error(error);
+          }
+        )
+
+
+        // Mostrar la imagen en una vista previa
+/*         const imgPreview =  (document.getElementById('image-preview') as HTMLInputElement);
+        imgPreview.setAttribute('src', imageData); */
+  
+        // Aquí puedes realizar otras operaciones con la imagen, como enviarla al servidor
       };
       reader.readAsDataURL(file);
     }

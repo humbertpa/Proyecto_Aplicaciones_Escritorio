@@ -46,4 +46,16 @@ export class ClienteService {
 
     return this.httpClient.post(environment.apiUrl + `/cliente/editar/${id}`, clienteModificado,{ headers: httpHeaders });
   }
+
+  cambiarImagen(imagen : string, id : string) {
+    console.log("=========================Entro a cambiar Imagen en cliente.service");
+
+    console.log(imagen);
+    console.log(id);
+    const token = localStorage.getItem('token');
+    const httpHeaders = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+
+    return this.httpClient.post(environment.apiUrl + `/cliente/imagen/${id}`, {imagen:imagen} , { headers: httpHeaders });
+  }
+
 }

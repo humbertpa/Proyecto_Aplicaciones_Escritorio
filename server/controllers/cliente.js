@@ -87,6 +87,24 @@ class ControladorCliente {
                 res.status(500).send('Error al editar Registro');
             });
     }
+
+    static cambiarImagen(req, res) {
+        console.log("Entro al controlador de cambiar imagen de cliente");
+        console.log(req.user);
+        console.log(req.body);
+        console.log(req.params);
+
+        Cliente.updateOne({ _id: new ObjectId(req.params.id) }, { $set: {imagen : req.body.imagen} })
+            .then(resultado => {
+                console.log('Imagen Cambiada Exitosamente');
+                console.log(resultado);
+                res.status(200).json(resultado);
+            })
+            .catch(error => {
+                console.error(error);
+                res.status(500).send('Error al cambiar imagen');
+            });
+    }
 }
 
 module.exports = ControladorCliente;
