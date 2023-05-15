@@ -59,7 +59,7 @@ class ControladorUsuario {
             console.log("todo salio bien");
             console.log(user);
             
-            const token = jwt.sign({ id: usuarioGuardado._id }, 'secret_key', { expiresIn: '1h' });
+            const token = jwt.sign({ id: user._id }, 'secret_key', { expiresIn: '1h' });
             res.json({ token });
 
         } catch (error) {

@@ -1,12 +1,12 @@
 const { Schema, model } = require('mongoose');
-const mongoose = require('mongoose');
 
 const clientSchema = new Schema({
-    tipo: { type: String, required: true },
     nombre: { type: String, required: true },
     correo: { type: String, required: true },
-    telefono: { type: String, required: true },
-    usuario: { type: mongoose.Schema.Types.ObjectId, ref: 'User' }
+    contacto: { type: String, required: true },
+    organizacion: { type: String, required: true },
+    proyecto: { type: String, required: true },
+    correo_usuario: { type: String, required: true },
   });
 
-module.exports = model('Client', clientSchema);
+module.exports = model('Cliente', clientSchema);

@@ -1,5 +1,5 @@
 <div>
-    <form class="cliente-form">
+    <form class="cliente-form" (submit)="agregarCliente($event)">
         <h1>Nuevo Cliente</h1>
 
         <label for="cliente">Nombre del cliente:</label>
@@ -16,9 +16,6 @@
 
         <label for="proyecto">Proyecto:</label>
         <input type="text" id="proyecto" name="proyecto">
-
-        <label for="asesor">Asesor:</label>
-        <input type="text" id="asesor" name="asesor">
 
         <input type="submit" value="Añadir Cliente">
         <a href="clientes" class="cancel-button">Cancelar</a>
