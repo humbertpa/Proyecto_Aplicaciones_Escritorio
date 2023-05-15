@@ -1,3 +1,3 @@
 export const environment = {
-    apiUrl: 'http://localhost:3000'
+    apiUrl: 'https://proyecto-aplicaciones-escritorio-j65rcf9ip-humbertpa.vercel.app'
 };
