@@ -50,8 +50,8 @@ export class ClienteService {
   cambiarImagen(imagen : string, id : string) {
     console.log("=========================Entro a cambiar Imagen en cliente.service");
 
-    console.log(imagen);
-    console.log(id);
+    //console.log(imagen);
+    //console.log(id);
     const token = localStorage.getItem('token');
     const httpHeaders = new HttpHeaders().set('Authorization', `Bearer ${token}`);
 
