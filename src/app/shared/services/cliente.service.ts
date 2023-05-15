@@ -18,6 +18,32 @@ export class ClienteService {
     const token = localStorage.getItem('token');
     const httpHeaders = new HttpHeaders().set('Authorization', `Bearer ${token}`);
 
-    return this.httpClient.post<Cliente>(environment.apiUrl + '/cliente/agregar', nuevoCliente,{headers: httpHeaders});
+    return this.httpClient.post<Cliente>(environment.apiUrl + '/cliente/agregar', nuevoCliente, { headers: httpHeaders });
+  }
+
+  listar() {
+    console.log("=========================Entro a listar en cliente.service");
+    const token = localStorage.getItem('token');
+    const httpHeaders = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+
+    return this.httpClient.get(environment.apiUrl + '/cliente/listar', { headers: httpHeaders });
+  }
+
+  mostrar(nombre : string) {
+    console.log("=========================Entro a mostrar en cliente.service");
+    console.log(nombre);
+    const token = localStorage.getItem('token');
+    const httpHeaders = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+
+    return this.httpClient.get(environment.apiUrl + `/cliente/mostrar/${nombre}`, { headers: httpHeaders });
+  }
+
+  editar(clienteModificado : Cliente, id : string) {
+    console.log("=========================Entro a editar en cliente.service");
+    console.log(clienteModificado);
+    const token = localStorage.getItem('token');
+    const httpHeaders = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+
+    return this.httpClient.post(environment.apiUrl + `/cliente/editar/${id}`, clienteModificado,{ headers: httpHeaders });
   }
 }

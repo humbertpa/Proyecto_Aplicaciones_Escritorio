@@ -29,7 +29,7 @@ const routes: Routes = [
     path: 'clientes', component: ClientesComponent, children: [
       { path: '', component: TablaClientesComponent },
       { path: 'nuevoCliente', component: NuevoClienteComponent },
-      { path: 'perfilCliente', component: PerfilClienteComponent }
+      { path: 'perfilCliente/:nombre', component: PerfilClienteComponent }
     ]
   },
 

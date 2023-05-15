@@ -24,9 +24,6 @@ export class NuevoClienteComponent {
 
   ) { }
 
-
-
-
   agregarCliente(event: Event) {
     event.preventDefault();
 
@@ -42,7 +39,7 @@ export class NuevoClienteComponent {
     this.clienteService.agregar(this.nuevoCliente).subscribe(
       (response : Cliente) => {
         console.log('Cliente agregado con éxito:', response);
-        this.router.navigate(['/']);
+        this.router.navigate(['/clientes']);
       },
       (error) => {
         console.error('Error al agregar cliente:', error);
